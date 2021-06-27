@@ -19,6 +19,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Tên Truyệnc</th>
+                                <th scope="col">Tác Giả</th>
                                 <th scope="col">Slug Truyện</th>
                                 <th scope="col">Hình Ảnh</th>
                                 <th scope="col">Tóm Tắt</th>
@@ -33,6 +34,7 @@
                                 
                                 <th scope="row">{{$key}}</th>
                                 <td>{{$Ltruyen->tentruyen}}</td>
+                                <td>{{$Ltruyen->tacgia}}</td>
                                 <td>{{$Ltruyen->slug_truyen}}</td>
                                 <td> 
                                 <img src="{{asset('public/uploads/truyen/'.$Ltruyen->hinhanh)}}" width="150" height="100" alt="">

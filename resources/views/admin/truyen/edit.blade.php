@@ -34,6 +34,11 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="exampleInputEmail1">Tác Giả</label>
+                            <input type="text" value="{{$truyen->tacgia}}" name="tacgia"  class="form-control" placeholder="tác giả">
+                        </div>
+
+                        <div class="form-group">
                             <label for="exampleInputEmail1">Slug Truyện</label>
                             <input type="text" value="{{$truyen->slug_truyen}}" name="slug_truyen" class="form-control"
                              id="convert_slug" placeholder="thêm truyện">

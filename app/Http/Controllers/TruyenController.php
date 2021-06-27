@@ -47,6 +47,7 @@ class TruyenController extends Controller
                 'tentruyen' => 'required|max:255|unique:truyen',
                 'tomtat' => 'required|max:255',
                 'kichhoat' => 'required',
+                'tacgia' => 'required',
                 'hinhanh' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048
                 |dimensions:min_width:100,min_height:100,max_height:1000,max_width:1000',
                 'slug_truyen' => 'required|max:255|unique:truyen',
@@ -56,7 +57,7 @@ class TruyenController extends Controller
                 'tentruyen.required' => 'Tên truyen phải có',
                 'slug_truyen.required' => 'slug truyen phải có',
                 'slug_truyen.unique' => 'slug đã có',
-
+                'tacgia.required' => 'phải có tác giả truyện',
                 'tentruyen.unique' => 'Tên truyen đã có',
                 'tomtat.required' => 'chưa có tóm tắt phải có',
                 'hinhanh.required' => 'hình ảnh phải có',
@@ -66,6 +67,7 @@ class TruyenController extends Controller
         $truyen = new Truyen();
         $truyen->slug_truyen = $data['slug_truyen'];
         $truyen->tentruyen = $data['tentruyen'];
+        $truyen->tacgia = $data['tacgia'];
         $truyen->tomtat = $data['tomtat'];
         $truyen->kichhoat = $data['kichhoat'];
         $truyen->danhmuc_id = $data['danhmuc_id'];
@@ -124,7 +126,7 @@ class TruyenController extends Controller
                 'tentruyen' => 'required|max:255',
                 'tomtat' => 'required|max:255',
                 'kichhoat' => 'required',
-
+                'tacgia' => 'required',
                 'slug_truyen' => 'required|max:255',
                 'danhmuc_id' => 'required'
             ],
@@ -132,7 +134,7 @@ class TruyenController extends Controller
                 'tentruyen.required' => 'Tên truyen phải có',
                 // 'slug_truyen.required' => 'slug truyen phải có',
                 // 'slug_truyen.unique' => 'slug đã có',
-
+                'tacgia.required' => 'phải có tác giả truyện',
                 'tentruyen.unique' => 'Tên truyen đã có',
                 'tomtat.required' => 'chưa có tóm tắt phải có',
                 
@@ -142,6 +144,7 @@ class TruyenController extends Controller
             $truyen = Truyen::find($id);
             $truyen->slug_truyen = $data['slug_truyen'];
             $truyen->tentruyen = $data['tentruyen'];
+            $truyen->tacgia = $data['tacgia'];
             $truyen->tomtat = $data['tomtat'];
             $truyen->kichhoat = $data['kichhoat'];
             $truyen->danhmuc_id = $data['danhmuc_id'];
