@@ -20,4 +20,9 @@ class Truyen extends Model
     {
         return $this->belongsTo('App\Models\DanhMucTruyen','danhmuc_id','id');
     }
+    public function chapter()
+    {
+        # 1 truyện nhiều chapter
+        return $this->hasMany('App\Models\chapter','truyen_id','id');
+    }
 }
