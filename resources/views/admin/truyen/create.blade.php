@@ -13,7 +13,7 @@
     </div>
     @endif
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Thêm Truyện</div>
 
@@ -31,10 +31,12 @@
                             
                             class="form-control" id="slug" onkeyup="ChangeToSlug()" placeholder="tên truyện">
                         </div>
+
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tác Giả</label>
                             <input type="text" value="{{old('tacgia')}}" name="tacgia"  class="form-control" placeholder="tác giả">
                         </div>
+
                         <div class="form-group">
                             <label for="exampleInputEmail1">Slug Truyện</label>
                             <input type="text" value="{{old('slug_truyen')}}" name="slug_truyen" class="form-control"
@@ -45,11 +47,21 @@
                             <label for="exampleInputEmail1">Tóm tắt truyện</label>
                            <Textarea name="tomtat" rows="5" style="resize:none" class="form-control"></Textarea>
                         </div>
+
                         <div class="form-group">
                             <label for="exampleInputEmail1">Danh Mục Truyện</label>
                             <select class="custom-select" name="danhmuc_id" id="">
                                @foreach($danhmuc as $key => $dm) 
                                 <option value="{{$dm->id}}">{{$dm->tendanhmuc}}</option>
+                            @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Thể Loại Truyện</label>
+                            <select class="custom-select" name="theloai" id="">
+                               @foreach($theloai as $key => $loai) 
+                                <option value="{{$dm->id}}">{{$loai->tentheloai}}</option>
                             @endforeach
                             </select>
                         </div>

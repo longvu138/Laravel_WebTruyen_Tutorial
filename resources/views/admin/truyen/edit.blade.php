@@ -13,7 +13,7 @@
     </div>
     @endif
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Cập Nhật Truyện</div>
 
@@ -48,6 +48,7 @@
                             <label for="exampleInputEmail1">Tóm tắt truyện</label>
                            <Textarea name="tomtat" rows="5" style="resize:none" class="form-control">{{$truyen->tomtat}}</Textarea>
                         </div>
+
                         <div class="form-group">
                             <label for="exampleInputEmail1">Danh Mục Truyện</label>
                             <select class="custom-select" name="danhmuc_id" id="">
@@ -58,11 +59,23 @@
                             @endforeach
                             </select>
                         </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Thể Loại Truyện</label>
+                            <select class="custom-select" name="theloai" id="">
+                               @foreach($theloai as $key => $dm) 
+
+                                <option {{ $dm->id == $truyen->theloai_id ? 'selected' : ''}}
+                                 value="{{$dm->id}}">{{$dm->tentheloai}}</option>
+                            @endforeach
+                            </select>
+                        </div>
                         
                         <div class="form-group">
                             <label for="exampleInputEmail1">Hình Ảnh truyện</label>
                             <input type="file" class="form-control-file" name="hinhanh">
-                            <img src="{{asset('public/uploads/truyen/'.$truyen->hinhanh)}}" width="150" height="100" alt="">
+                            <img src="{{asset('public/uploads/truyen/'.$truyen->hinhanh)}}"
+                             width="150" height="100" alt="">
                                 
                         </div>
                         <div class="form-group">

@@ -1,6 +1,6 @@
 @extends('../layout')
 @section('content')
-<h1 style="margin-top: 50px;">{{$tendanhmuc}}</h1>
+<h1 style="margin-top: 50px;">{{$tentheloai}}</h1>
 <hr>
 <div class="album py-5 bg-light">
 
@@ -12,9 +12,9 @@
             @if($count == 0)
             <div class="col-md-12">
                 <div class="card mb-12 box-shadow">
-                   <div class="card-body">
-                       <p>Truyện đang được cập nhật!! Waiting.....</p>
-                   </div>
+                    <div class="card-body">
+                        <p>Truyện đang được cập nhật!! Waiting.....</p>
+                    </div>
                 </div>
             </div>
             @else
@@ -39,7 +39,7 @@
                 </div>
             </div>
             @endforeach
-        
+
             <div class="container text-right">
                 <a href="" class="btn btn-success">Xem tất cả</a>
             </div>

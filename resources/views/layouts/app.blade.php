@@ -121,5 +121,9 @@
 
 
 </script>
+<script src="//cdn.ckeditor.com/4.16.1/full/ckeditor.js"></script>
+<script>
+     CKEDITOR.replace( 'noidungchapter' );
+</script>
 </body>
 </html>

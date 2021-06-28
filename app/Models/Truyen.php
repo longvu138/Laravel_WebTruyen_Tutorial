@@ -11,7 +11,7 @@ class Truyen extends Model
     // khai báo danh mục truyện
     public $timestamps = false; 
     protected $fillable= [
-        'tentruyen','tomtat','kichhoat','slug_truyen','hinhanh','danhmuc_id'
+        'tentruyen','tomtat','kichhoat','slug_truyen','hinhanh','danhmuc_id','theloai_id'
     ];
     protected $primaryKey='id';
     protected $table="truyen";
@@ -24,5 +24,9 @@ class Truyen extends Model
     {
         # 1 truyện nhiều chapter
         return $this->hasMany('App\Models\chapter','truyen_id','id');
+    }
+    public function TheLoai()
+    {
+        return $this->belongsTo('App\Models\TheLoai','theloai_id','id');
     }
 }

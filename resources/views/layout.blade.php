@@ -19,7 +19,7 @@
     <div class="container">
         <!-- Menu -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
-            <a class="navbar-brand" href="#">Sách Truyện </a>
+            <a class="navbar-brand" href="{{url('/')}}">Sách Truyện </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -28,7 +28,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{'/'}}">Trang Chủ
+                        <a class="nav-link" href="{{url('/')}}">Trang Chủ
                             <span class="sr-only">(current)</span></a>
                     </li>
 
@@ -38,19 +38,23 @@
                             Danh mục truyện
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                           @foreach($danhmuc as $key => $dm)
-                            <a class="dropdown-item" href="{{url('danh-muc/'.$dm->slug_danhmuc)}}">{{$dm->tendanhmuc}}</a>
+                            @foreach($danhmuc as $key => $dm)
+                            <a class="dropdown-item"
+                                href="{{url('danh-muc/'.$dm->slug_danhmuc)}}">{{$dm->tendanhmuc}}</a>
                             @endforeach
                         </div>
                     </li>
+                    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Thể Loại truyện
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Tên Danh Mục</a>
-                            <a class="dropdown-item" href="#">Another action</a>
+                            @foreach($theloai as $key => $the)
+                            <a class="dropdown-item"
+                                href="{{url('the-loai/'.$the->slug_theloai)}}">{{$the->tentheloai}}</a>
+                            @endforeach
                         </div>
                     </li>
                 </ul>
@@ -86,9 +90,12 @@
     </footer>
 </body>
 <script src="{{ asset('js/app.js') }}" defer></script>
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
 <!--  nhúng slider  -->
+
 <script type="text/javascript">
     $(".owl-carousel").owlCarousel({
         loop: true,
@@ -105,6 +112,24 @@
             },
         },
     });
+</script>
+<script>
+    $('.select-chapter').on('change', function () {
+        var url = $(this).val();
+        if (url) {
+            window.location = url;
+        }
+        return false;
+    });
+    current_chapter();
+    // ham current chapter bien url bang gia tri location
+    // tim trong class select-chapter option co value bang bien url
+    // gan gia tri selected cho option do
+    function current_chapter() {
+        var url = window.location.href;
+        $('.select-chapter').find('option[value="' + url + '"]').attr("selected", true);
+
+    }
 </script>
 
 </html>
