@@ -12,7 +12,7 @@
             @foreach($truyen as $key => $value)
             <div class="col-md-3">
                 <div class="card mb-3 box-shadow">
-                        <img width="250" height="250" class="card-img-top" src=" {{ asset('public/uploads/truyen/'.$value->hinhanh) }}">
+                        <img width="214px" height="300px class="card-img-top" src=" {{ asset('public/uploads/truyen/'.$value->hinhanh) }}">
                         <div class="card-body">
                             <h5>{{$value->tentruyen}}</h5>
                             <p class="card-text">{{$value->tomtat}}</p>
@@ -41,7 +41,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="card mb-3 box-shadow">
-                    <img class="card-img-top" src=" {{ asset('public/uploads/truyen/4_zing13.jpg') }}">
+                    <img class="card-img-top"  width="214px" height="300px"   src=" {{ asset('public/uploads/truyen/4_zing13.jpg') }}">
                     <div class="card-body">
                         <h3>Tiêu ĐỀ</h3>
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
@@ -59,7 +59,7 @@
 
             <div class="col-md-3">
                 <div class="card mb-3 box-shadow">
-                    <img class="card-img-top" src=" {{ asset('public/uploads/truyen/4_zing13.jpg') }}">
+                    <img class="card-img-top"  width="214px" height="300px" src=" {{ asset('public/uploads/truyen/4_zing13.jpg') }}">
                     <div class="card-body">
                         <h3>Tiêu ĐỀ</h3>
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
@@ -77,7 +77,7 @@
 
             <div class="col-md-3">
                 <div class="card mb-3 box-shadow">
-                    <img class="card-img-top" src=" {{ asset('public/uploads/truyen/4_zing13.jpg') }}">
+                    <img class="card-img-top"  width="214px" height="300px"  src=" {{ asset('public/uploads/truyen/4_zing13.jpg') }}">
                     <div class="card-body">
                         <h3>Tiêu ĐỀ</h3>
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
@@ -95,7 +95,7 @@
 
             <div class="col-md-3">
                 <div class="card mb-3 box-shadow">
-                    <img class="card-img-top" src=" {{ asset('public/uploads/truyen/4_zing13.jpg') }}">
+                    <img class="card-img-top"   width="214px" height="300px"  src=" {{ asset('public/uploads/truyen/4_zing13.jpg') }}">
                     <div class="card-body">
                         <h3>Tiêu ĐỀ</h3>
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
@@ -125,7 +125,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="card mb-3 box-shadow">
-                    <img class="card-img-top" src=" {{ asset('public/uploads/truyen/4_zing13.jpg') }}">
+                    <img class="card-img-top"  width="214px" height="300px"  src=" {{ asset('public/uploads/truyen/4_zing13.jpg') }}">
                     <div class="card-body">
                         <h3>Tiêu ĐỀ</h3>
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
@@ -143,7 +143,7 @@
 
             <div class="col-md-3">
                 <div class="card mb-3 box-shadow">
-                    <img class="card-img-top" src=" {{ asset('public/uploads/truyen/4_zing13.jpg') }}">
+                    <img class="card-img-top"  width="214px" height="300px"  src=" {{ asset('public/uploads/truyen/4_zing13.jpg') }}">
                     <div class="card-body">
                         <h3>Tiêu ĐỀ</h3>
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
@@ -161,7 +161,7 @@
 
             <div class="col-md-3">
                 <div class="card mb-3 box-shadow">
-                    <img class="card-img-top" src=" {{ asset('public/uploads/truyen/4_zing13.jpg') }}">
+                    <img class="card-img-top"  width="214px" height="300px"  src=" {{ asset('public/uploads/truyen/4_zing13.jpg') }}">
                     <div class="card-body">
                         <h3>Tiêu ĐỀ</h3>
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
@@ -179,7 +179,7 @@
 
             <div class="col-md-3">
                 <div class="card mb-3 box-shadow">
-                    <img class="card-img-top" src=" {{ asset('public/uploads/truyen/4_zing13.jpg') }}">
+                    <img width="214px" height="300px" class="card-img-top" src=" {{ asset('public/uploads/truyen/4_zing13.jpg') }}">
                     <div class="card-body">
                         <h3>Tiêu ĐỀ</h3>
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to

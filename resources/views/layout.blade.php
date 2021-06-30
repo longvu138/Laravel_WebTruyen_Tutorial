@@ -44,7 +44,7 @@
                             @endforeach
                         </div>
                     </li>
-                    
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,10 +58,14 @@
                         </div>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                <form autocomplete="off" class="form-inline my-2 my-lg-0" method="POST" action="{{url('tim-kiem')}}">
+                    @csrf
+                    <input class="form-control mr-sm-2" type="search" id="keyword" name=tukhoa
+                        placeholder="vui lòng nhập vào..." aria-label="Search" />
+                    <div id="search_ajax">
+                    </div>
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                        Search
+                        Tìm Kiếm
                     </button>
                 </form>
             </div>
@@ -113,6 +117,7 @@
         },
     });
 </script>
+<!-- chọn chương -->
 <script>
     $('.select-chapter').on('change', function () {
         var url = $(this).val();
@@ -130,6 +135,37 @@
         $('.select-chapter').find('option[value="' + url + '"]').attr("selected", true);
 
     }
+</script>
+<!-- ajax tìm kiếm -->
+<script>
+    $('#keyword').keyup(function () {
+        var keyword = $(this).val();
+        if (keyword != '') {
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url: "{{url('/timkiem-ajax')}}",
+                method: "POST",
+                data: { keyword: keyword, _token: _token },
+                success: function (data) {
+                    // alert(data);
+                    $('#search_ajax').fadeIn();
+                    $('#search_ajax').html(data);
+                }
+            });
+        } else {
+            $('search_ajax').fadeOut();
+        }
+    });
+    $(document).on('click', '.li_search_ajax', function () {
+        $('#keyword').val($(this).text());
+        $('#search_ajax').fadeOut();
+
+    });
+    $(document).on('click', '.li_search_ajax', function () {
+        $('#search_ajax').fadeOut();
+
+    });
+
 </script>
 
 </html>

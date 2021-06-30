@@ -3,11 +3,12 @@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Library</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Data</li>
+        <li class="breadcrumb-item"><a href="{{url('/')}}">Trang Chủ</a></li>
+        <li class="breadcrumb-item"><a href="{{url('danh-muc/'.$truyen->danhmuctruyen->slug_danhmuc)}}">{{$truyen->danhmuctruyen->tendanhmuc}}</a></li>
+        <li class="breadcrumb-item">{{$truyen->tentruyen}}</li>
     </ol>
 </nav>
+
 <div class="row">
     <div class="col-md-9">
         <div class="row">
@@ -21,12 +22,16 @@
                     <li>Danh Mục Truyên: <a
                             href="{{url('danh-muc/'.$truyen->danhmuctruyen->slug_danhmuc)}}">{{$truyen->danhmuctruyen->tendanhmuc}}</a>
                     </li>
+                    <li>Thể Loại: <a
+                            href="{{url('the-loai/'.$truyen->theloai->slug_theloai)}}">{{$truyen->theloai->tentheloai}}</a>
+                    </li>
                     <li>số chapter:2000</li>
                     <li>Lượt xem:200</li>
                     <li><a href="">Xem mục lục</a></li>
-                   
+
                     @if($chapter_dau)
-                    <li><a href="{{url('xem-chapter/'.$chapter_dau->slug_chapter)}}" class="btn btn-primary">Đọc online</a></li>
+                    <li><a href="{{url('xem-chapter/'.$chapter_dau->slug_chapter)}}" class="btn btn-primary">Đọc
+                            online</a></li>
                     @else
                     <li> <a href="" class="btn btn-danger"> đang cập nhật...</a> </li>
                     @endif
@@ -82,7 +87,7 @@
                                     class="btn btn-sm btn-outline-secondary">Đọc Ngay</a>
                                 <a class="btn btn-sm btn-outline-secondary"> <i class="fas fa-eye"></i> 50</a>
                             </div>
-                          
+
                         </div>
                     </div>
                     </a>

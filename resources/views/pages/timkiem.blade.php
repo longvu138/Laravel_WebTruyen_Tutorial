@@ -4,11 +4,11 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('/')}}">Trang Chủ</a></li>
-        <li class="breadcrumb-item active" aria-current="page">{{$tentheloai}}</li>
+        <li class="breadcrumb-item active" aria-current="page">Tìm Kiếm</li>
     </ol>
 </nav>
 
-<h1 style="margin-top: 50px;">{{$tentheloai}}</h1>
+<h1 style="margin-top: 50px;">Tìm Kiếm với từ khoá là : {{$tukhoa}}</h1>
 <hr>
 <div class="album py-5 bg-light">
 
@@ -21,7 +21,8 @@
             <div class="col-md-12">
                 <div class="card mb-12 box-shadow">
                     <div class="card-body">
-                        <p>Truyện đang được cập nhật!! Waiting.....</p>
+                        <p>không tìm thấy truyện
+                        </p>
                     </div>
                 </div>
             </div>

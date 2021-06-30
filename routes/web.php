@@ -26,7 +26,8 @@ Route::get('/xem-truyen/{slug}',[IndexController::class,'xemtruyen']);
 Route::get('/xem-chapter/{slug}',[IndexController::class,'xemchapter']); 
 Route::get('/the-loai/{slug}',[IndexController::class,'theloai']); 
 
-
+Route::post('/tim-kiem',[IndexController::class,'timkiem']); 
+Route::post('/timkiem-ajax',[IndexController::class,'timkiemajax']); 
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

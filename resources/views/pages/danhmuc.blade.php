@@ -1,5 +1,13 @@
 @extends('../layout')
 @section('content')
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{url('/')}}">Trang Chủ</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{$tendanhmuc}}</li>
+    </ol>
+</nav>
+
 <h1 style="margin-top: 50px;">{{$tendanhmuc}}</h1>
 <hr>
 <div class="album py-5 bg-light">
