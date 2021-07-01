@@ -38,8 +38,8 @@
                                        Thể Loại
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{route('truyen.create')}}">Thêm Thể Loại</a>
-                                        <a class="dropdown-item" href="{{route('truyen.index')}}">Liệt kê Thể Loại </a>
+                                        <a class="dropdown-item" href="{{route('theloai.create')}}">Thêm Thể Loại</a>
+                                        <a class="dropdown-item" href="{{route('theloai.index')}}">Liệt kê Thể Loại </a>
 
                                     </div>
                                 </li>

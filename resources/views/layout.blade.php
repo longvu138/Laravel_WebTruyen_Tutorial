@@ -161,11 +161,15 @@
         $('#search_ajax').fadeOut();
 
     });
-    $(document).on('click', '.li_search_ajax', function () {
-        $('#search_ajax').fadeOut();
+    $(function () {
+        $(document).click(function () {
+            $('#search_ajax').hide(); //hide the button
 
+        });
     });
 
 </script>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0&appId=360498685238202&autoLogAppEvents=1" nonce="Lr2TXpnB"></script>
 
 </html>

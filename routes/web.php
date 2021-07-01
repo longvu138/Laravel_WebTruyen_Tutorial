@@ -7,7 +7,7 @@ use App\Http\Controllers\DanhMucTruyenController;
 use App\Http\Controllers\TruyenController;
 use App\Http\Controllers\chapterController;
 use App\Http\Controllers\IndexController;
-
+use App\Http\Controllers\theloaiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +26,8 @@ Route::get('/xem-truyen/{slug}',[IndexController::class,'xemtruyen']);
 Route::get('/xem-chapter/{slug}',[IndexController::class,'xemchapter']); 
 Route::get('/the-loai/{slug}',[IndexController::class,'theloai']); 
 
+Route::get('/tag/{tag}',[IndexController::class,'tag']); 
+
 Route::post('/tim-kiem',[IndexController::class,'timkiem']); 
 Route::post('/timkiem-ajax',[IndexController::class,'timkiemajax']); 
 Auth::routes();
@@ -35,5 +37,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::resource('/danhmuc', DanhMucTruyenController::class);
 Route::resource('/truyen', TruyenController::class);
 Route::resource('/chapter', chapterController::class);
+Route::resource('/theloai', theloaiController::class);
 
 

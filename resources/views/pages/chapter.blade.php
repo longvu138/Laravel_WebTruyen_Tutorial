@@ -6,9 +6,13 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('/')}}">Trang Chủ</a></li>
-        <li class="breadcrumb-item"><a href="{{url('the-loai/'.$truyen_breadcrumb->theloai->slug_theloai)}}">{{$truyen_breadcrumb->theloai->tentheloai}}</a></li>
+        <li class="breadcrumb-item"><a
+                href="{{url('the-loai/'.$truyen_breadcrumb->theloai->slug_theloai)}}">{{$truyen_breadcrumb->theloai->tentheloai}}</a>
+        </li>
 
-        <li class="breadcrumb-item"><a href="{{url('danh-muc/'.$truyen_breadcrumb->danhmuctruyen->slug_danhmuc)}}">{{$truyen_breadcrumb->danhmuctruyen->tendanhmuc}}</a></li>
+        <li class="breadcrumb-item"><a
+                href="{{url('danh-muc/'.$truyen_breadcrumb->danhmuctruyen->slug_danhmuc)}}">{{$truyen_breadcrumb->danhmuctruyen->tendanhmuc}}</a>
+        </li>
         <li class="breadcrumb-item">{{$truyen_breadcrumb->tentruyen}}</li>
     </ol>
 </nav>
@@ -43,10 +47,14 @@
 
         <div class="noidungchuong">
             {!!$chapter->noidung!!}
-            <h3>Lưu và chia sẻ truyện:</h3>
-            <a href=""><i class="fab fa-facebook"></i></a>
-            <a href=""><i class="fab fa-instagram"></i></a>
+
+            <div class="fb-share-button" data-href="{{\URL::current()}}" data-layout="button_count" data-size="large">
+                <a target="_blank" href="{{\URL::current()}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia
+                    sẻ</a>
+            </div>
+            <div class="fb-comments" data-href="  {{\URL::current()}}" data-width="100%" data-numposts="5"></div>
+
+
         </div>
     </div>
-</div>
-@endsection
+    @endsection

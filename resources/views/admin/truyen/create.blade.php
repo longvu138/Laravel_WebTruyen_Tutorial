@@ -36,6 +36,16 @@
                             <label for="exampleInputEmail1">Tác Giả</label>
                             <input type="text" value="{{old('tacgia')}}" name="tacgia"  class="form-control" placeholder="tác giả">
                         </div>
+                        
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Từ Khoá</label>
+                            <input type="text" value="{{old('tukhoa')}}" name="tukhoa"  class="form-control" placeholder="tác giả">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Lượt Xem</label>
+                            <input type="text" value="{{old('luotxem')}}" name="luotxem"  class="form-control" placeholder="tác giả">
+                        </div>
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Slug Truyện</label>

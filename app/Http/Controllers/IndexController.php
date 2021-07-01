@@ -7,21 +7,36 @@ use Illuminate\Http\Request;
 use App\Models\DanhMucTruyen;
 use App\Models\Truyen;
 use App\Models\TheLoai;
+use Illuminate\Validation\Rules\Exists;
+
+use function PHPUnit\Framework\isEmpty;
 
 class IndexController extends Controller
 {
     //
     public function timkiemajax(Request $request)
     {
+
         $data = $request->all();
         if ($data['keyword']) {
             $truyen = Truyen::where('kichhoat', 1)->where('tentruyen', 'LIKE', '%' . $data['keyword'] . '%')->Orwhere('tomtat', 'LIKE', '%' . $data['keyword']  . '%')->Orwhere('tacgia', 'LIKE', '%' .  $data['keyword']  . '%')->get();;
-            $output = '<ul class="dropdown-menu dropdown-menu-right " style="margin-right: 110px;display:block;padding: 5px 33px;"  >';
-            foreach ($truyen as $key => $tr) {
-                $output  .= '<li class="li_search_ajax"><a href="#">' . $tr->tentruyen . '</a></li>';
+            if ($truyen != '') {
+
+                $output = '<ul class="dropdown-menu dropdown-menu-right " style="margin-right: 110px;display:block;padding: 5px 33px;"  >';
+                foreach ($truyen as $key => $tr) {
+                    // $err = " không tìm thấy";
+                    // if (!isset($tr)) {
+                    //     $output  .= '<li class="li_search_ajax"><a href="#">' . $err . '</a></li>';
+                    // }
+                    // else {
+
+                    $output  .= '<li class="li_search_ajax"><a href="#">' . $tr->tentruyen . '</a></li>';
+                    // }
+                }
+
+                $output .= '</ul>';
+                echo $output;
             }
-            $output .= '</ul>';
-            echo $output;
         }
     }
 
@@ -142,7 +157,27 @@ class IndexController extends Controller
         $tukhoa = $data['tukhoa'];
         $truyen = Truyen::with('danhmuctruyen')->where('tentruyen', 'LIKE', '%' . $tukhoa . '%')
             ->Orwhere('tomtat', 'LIKE', '%' . $tukhoa . '%')->Orwhere('tacgia', 'LIKE', '%' . $tukhoa . '%')->get();
+           
 
         return view('pages.timkiem')->with(compact('danhmuc', 'truyen', 'theloai', 'slide_truyen', 'tukhoa'));
+    }
+
+    public function tag($tag)
+    {
+
+        $theloai = TheLoai::orderBy('id', 'DESC')->get();
+        // 
+        $danhmuc = DanhMucTruyen::orderBy('id', 'DESC')->get();
+        // 
+        $tags = explode('-', $tag);
+        $truyen = Truyen::with('danhmuctruyen','theloai')->where(
+            function ($query) use ($tags) {
+                for ($i = 0; $i < count($tags); $i++) {
+                    $query->Orwhere('tukhoa', 'LIKE', '% ' . $tags[$i] . ' %');         
+                }
+            }
+
+        )->get();
+        return view('pages.tag')->with(compact('truyen','tag','danhmuc','theloai'));
     }
 }

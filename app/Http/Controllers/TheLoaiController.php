@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TheLoai;
 use Illuminate\Http\Request;
 
-class TheLoaiController extends Controller
+class theloaiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +15,10 @@ class TheLoaiController extends Controller
     public function index()
     {
         //
+        $theloai = TheLoai::orderBy('id', 'DESC')->get();
+        
+        // trả dữ liệu về trang index
+        return view('admin.theloai.index')->with(compact('theloai'));
     }
 
     /**
@@ -24,6 +29,7 @@ class TheLoaiController extends Controller
     public function create()
     {
         //
+        return view('admin.theloai.create');
     }
 
     /**
@@ -35,6 +41,29 @@ class TheLoaiController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->validate(
+            [
+                'tentheloai' => 'required|max:255|unique:theloai',
+                'slug_theloai' => 'required|max:255|unique:theloai',
+                'mota' => 'required|max:255',
+
+            ],
+            [
+                'tentheloai.unique' => 'tên thể loại đã tồn tại',
+                'slug_theloai.required' => 'Tên danh mục phải có',
+                'mota.required' => 'Mô tả phải có',
+                
+            ]
+        );
+        // tao đối tượng danh muc truyện từ model danhmuctruyen
+        $theloai = new TheLoai();
+        $theloai->tentheloai = $data['tentheloai'];
+        $theloai->slug_theloai=$data['slug_theloai'];
+        $theloai->mota = $data['mota'];
+        // dd($theloai);
+        $theloai->save();
+        // trả về trang vừa gửi dữ liệu kèm thông báo 
+        return redirect()->back()->with('status', 'thêm thể loại truyện thành công');
     }
 
     /**

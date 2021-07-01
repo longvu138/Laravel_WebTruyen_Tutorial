@@ -20,6 +20,8 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Tên Truyện</th>
+                                    <th scope="col">Từ Khoá</th>
+                                    <th scope="col">Lượt Xem</th>
                                     <th scope="col">Tác Giả</th>
                                     <th scope="col">Slug Truyện</th>
                                     <th scope="col">Hình Ảnh</th>
@@ -36,6 +38,8 @@
 
                                     <th scope="row">{{$key}}</th>
                                     <td>{{$Ltruyen->tentruyen}}</td>
+                                    <td>{{$Ltruyen->tukhoa}}</td>
+                                    <td>{{$Ltruyen->luotxem}}</td>
                                     <td>{{$Ltruyen->tacgia}}</td>
                                     <td>{{$Ltruyen->slug_truyen}}</td>
                                     <td>

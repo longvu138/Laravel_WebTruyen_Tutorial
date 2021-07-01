@@ -19,7 +19,7 @@ class TruyenController extends Controller
     {
         //
         $truyen = Truyen::with('danhmuctruyen','theloai')->orderBy('id', 'DESC')->get();
-
+      
         return view('admin.truyen.index')->with(compact('truyen'));
     }
 
@@ -55,7 +55,9 @@ class TruyenController extends Controller
                 |dimensions:min_width:100,min_height:100,max_height:1000,max_width:1000',
                 'slug_truyen' => 'required|max:255|unique:truyen',
                 'danhmuc_id' => 'required',
-                'theloai' => 'required'
+                'theloai' => 'required',
+                'tukhoa' => 'required',
+                'luotxem' => 'required'
             ],
             [
                 'tentruyen.required' => 'Tên truyen phải có',
@@ -73,6 +75,8 @@ class TruyenController extends Controller
         $truyen->tentruyen = $data['tentruyen'];
         $truyen->theloai_id = $data['theloai'];
         $truyen->tacgia = $data['tacgia'];
+        $truyen->tukhoa = $data['tukhoa'];
+        $truyen->luotxem = $data['luotxem'];
         $truyen->tomtat = $data['tomtat'];
         $truyen->kichhoat = $data['kichhoat'];
         $truyen->danhmuc_id = $data['danhmuc_id'];
@@ -135,7 +139,9 @@ class TruyenController extends Controller
                 'tacgia' => 'required',
                 'slug_truyen' => 'required|max:255',
                 'danhmuc_id' => 'required',
-                'theloai' => 'required'
+                'theloai' => 'required',
+                'tukhoa' => 'required',
+                'luotxem' => 'required'
             ],
             [
                 'tentruyen.required' => 'Tên truyen phải có',
@@ -152,6 +158,8 @@ class TruyenController extends Controller
             $truyen->slug_truyen = $data['slug_truyen'];
             $truyen->tentruyen = $data['tentruyen'];
             $truyen->theloai_id = $data['theloai'];
+            $truyen->tukhoa = $data['tukhoa'];
+            $truyen->luotxem = $data['luotxem'];
             $truyen->tacgia = $data['tacgia'];
             $truyen->tomtat = $data['tomtat'];
             $truyen->kichhoat = $data['kichhoat'];

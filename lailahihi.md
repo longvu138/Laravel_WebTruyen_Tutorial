@@ -69,3 +69,15 @@
     Xem route:list
     $php artisan route::list
 7. fun old('') lưu lại dữ liệu nếu k hợp lệ k bị xoá trắng
+8. debug câu sql:
+ thêm ->toSql(); vào sau rồi DD ra
+ ví dụ
+$truyen = Truyen::with('danhmuctruyen','TheLoai')->where(
+            function ($query) use($tags) {
+                for ($i=0; $i < count($tags) ; $i++) { 
+                    $query->orWhere('tukhoa','LIKE','%'. $tags[$i].'%');    
+                }
+            }
+
+        ) ->toSql();
+        dd($truyen);
