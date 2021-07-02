@@ -2,7 +2,7 @@
 
 @section('content')
 @include('layouts.nav')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -14,31 +14,32 @@
                         {{ session('status') }}
                     </div>
                     @endif
-                    <table class="table table-striped">
+                    <table class="table table-striped text-center">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Tên Thể Loại</th>
                                 <th scope="col">Slug theloai</th>
                                 <th scope="col">Mô Tả</th>
+                                <th scope="col">Quản Lý</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($theloai as $key => $tl)
                             <tr>
                                 <th scope="row">{{$key}}</th>
-                                <td>{{$tl->thetheloai}}</td>
+                                <td>{{$tl->tentheloai}}</td>
                                 <td>{{$tl->slug_theloai}}</td>
                                 <td>{{$tl->mota}}</td>
-                                <td>
-                                    <form  method="POST" action="{{route('theloai.destroy',['theloai' => $tl->id])}}">
+                                <td class="row">
+                                    <form  class="col" method="POST" action="{{route('theloai.destroy',['theloai' => $tl->id])}}">
                                     @method('DELETE')
                                     @csrf
                                     <button 
                                     onclick="return confirm('bạn có muốn xoá danh mục truyện này không?')"
                                      class="btn btn-danger" >Delete</button>
                                     </form>
-                                    <a href="{{route('theloai.edit',[$tl->id])}}" class="btn btn-primary">Edit</a>
+                                    <a href="{{route('theloai.edit',[$tl->id])}}" class="btn btn-primary col">Edit</a>
                                 </td>
                             </tr>
                             @endforeach

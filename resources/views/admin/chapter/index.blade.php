@@ -2,7 +2,7 @@
 
 @section('content')
 @include('layouts.nav')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -14,7 +14,7 @@
                         {{ session('status') }}
                     </div>
                     @endif
-                    <table class="table table-striped">
+                    <table class="table table-striped text-center">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>

@@ -15,7 +15,7 @@
     <div class="col-md-9">
         <div class="row">
             <div class="col-md-3">
-                <img class="card-img-top" src=" {{ asset('public/uploads/truyen/'.$truyen->hinhanh) }}" />
+                <img class="card-img-top img-responsive" src=" {{ asset('public/uploads/truyen/'.$truyen->hinhanh) }}" />
             </div>
             <div class="col-md-9">
                 <ul class="infotruyen" style="list-style: none">
@@ -26,6 +26,7 @@
                             sẻ</a>
                     </div>
                     <li>Tên Truyện: {{$truyen->tentruyen}} </li>
+                    <li>Ngày Đăng: {{$truyen->created_at->diffForHumans() }} </li>
                     <li>tác giả: {{$truyen->tacgia}} </li>
                     <li>Danh Mục Truyên: <a
                             href="{{url('danh-muc/'.$truyen->danhmuctruyen->slug_danhmuc)}}">{{$truyen->danhmuctruyen->tendanhmuc}}</a>
@@ -38,8 +39,10 @@
                     <li><a href="">Xem mục lục</a></li>
 
                     @if($chapter_dau)
-                    <li><a href="{{url('xem-chapter/'.$chapter_dau->slug_chapter)}}" class="btn btn-primary">Đọc
-                            online</a></li>
+                    <li style="margin-bottom: 15px;" ><a     href="{{url('xem-chapter/'.$chapter_moinhat->slug_chapter)}}">Đọc Chương mới nhất</a></li>
+                    <li><a  href="{{url('xem-chapter/'.$chapter_dau->slug_chapter)}}" class="btn btn-primary">Đọc online</a></li>
+
+
                     @else
                     <li> <a href="" class="btn btn-danger"> đang cập nhật...</a> </li>
                     @endif
@@ -48,21 +51,7 @@
         </div>
         <div class="col-md-12">
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est
-                laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                aute irure dolor in reprehenderit in voluptate velit esse cillum
-                dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum.
+                {{$truyen->tomtat}}
             </p>
         </div>
         <style>
@@ -174,7 +163,7 @@
             @foreach($cungdanhmuc as $key => $value)
             <div class="col-md-3">
                 <div class="card mb-3 box-shadow">
-                    <img width="250" height="250" class="card-img-top"
+                    <img class="card-img-top img-responsive"
                         src=" {{ asset('public/uploads/truyen/'.$value->hinhanh) }}">
                     <div class="card-body">
                         <h5>{{$value->tentruyen}}</h5>
@@ -196,8 +185,41 @@
     </div>
 
     <div class="col-md-3">
-        <h3>Sách được xem nhiều nhất</h3>
+        <h3 class="card-header" style="background-color:#ffdada !important;">Truyện Nổi Bật</h3>
+        @foreach($truyennoibat   as $key => $trnoibat)
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <img src="{{ asset('public/uploads/truyen/'.$trnoibat->hinhanh) }}" alt="" class="card-img-top img-responsive">
+            </div>
+            <div class="col-md-6 sidebar">
+                <p class="mt-2">
+                    {{$trnoibat->tentruyen}}
+                </p>
+                <p class="">
+                   <i class="fas fa-eye"> {{$trnoibat->luotxem}}</i>
+                </p>
+            </div>
+        </div>
+        @endforeach
+        <h3 class="card-header mt-2" style="background-color:#ffdada !important;">Truyện Xem Nhiều</h3>
+        @foreach($truyenxemnhieu   as $key => $trxemnhieu)
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <img src="{{ asset('public/uploads/truyen/'.$trxemnhieu->hinhanh) }}" alt="" class="card-img-top img-responsive">
+            </div>
+            <div class="col-md-6 sidebar">
+                <p class="mt-2">
+                    {{$trxemnhieu->tentruyen}}
+                </p>
+                <p class="">
+                   <i class="fas fa-eye"> {{$trxemnhieu->luotxem}}</i>
+                </p>
+            </div>
+        </div>
+        @endforeach
     </div>
+
+    
 </div>
 
 @endsection

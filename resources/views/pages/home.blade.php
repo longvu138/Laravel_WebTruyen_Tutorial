@@ -10,18 +10,22 @@
     <div class="container">
         <div class="row">
             @foreach($truyen as $key => $value)
-            <div class="col-md-3">
-                <div class="card mb-3 box-shadow">
-                        <img width="214px" height="300px class="card-img-top" src=" {{ asset('public/uploads/truyen/'.$value->hinhanh) }}">
-                        <div class="card-body">
-                            <h5>{{$value->tentruyen}}</h5>
-                            <p class="card-text">{{$value->tomtat}}</p>
+            <div class="col-md-3" >
+                <div class="card mb-3 box-shadow" >
+                        <img width="210px" height="300px" class="card-img-top" src=" {{ asset('public/uploads/truyen/'.$value->hinhanh) }}">
+                        <hr>
+                        <div class="card-body p-3 " >
+                            <h5 style="height: 40px;">{{ $value->tentruyen}}</h5>
+                            @php
+                            $tomtat =substr( $value->tomtat ,0,50).'...';
+                            @endphp
+                            <p style="height: 40px;" class="card-text"> {{$tomtat}} </p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <a href="{{url('xem-truyen/'.$value->slug_truyen)}}" class="btn btn-sm btn-outline-secondary">Đọc Ngay</a>
                                     <a class="btn btn-sm btn-outline-secondary"> <i class="fas fa-eye"></i> 50</a>
                                 </div>
-                                <small class="text-muted">9 mins</small>
+                                <small class="text-muted"> {{$value->created_at->diffForHumans() }}</small>
                             </div>
                         </div>
                     </a>

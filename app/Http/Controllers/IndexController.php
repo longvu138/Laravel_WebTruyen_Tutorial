@@ -22,7 +22,7 @@ class IndexController extends Controller
             $truyen = Truyen::where('kichhoat', 1)->where('tentruyen', 'LIKE', '%' . $data['keyword'] . '%')->Orwhere('tomtat', 'LIKE', '%' . $data['keyword']  . '%')->Orwhere('tacgia', 'LIKE', '%' .  $data['keyword']  . '%')->get();;
             if ($truyen != '') {
 
-                $output = '<ul class="dropdown-menu dropdown-menu-right " style="margin-right: 110px;display:block;padding: 5px 33px;"  >';
+                $output = '<ul class="dropdown-menu dropdown-menu-right " style="position: absolute;display:block;padding: 5px 15px;top: 75%;"  >';
                 foreach ($truyen as $key => $tr) {
                     // $err = " không tìm thấy";
                     // if (!isset($tr)) {
@@ -90,11 +90,16 @@ class IndexController extends Controller
         // 
         $chapter_dau = chapter::with('truyen')->orderBy('id', 'ASC')->where('truyen_id', $truyen->id)->first();
         // 
+        $chapter_moinhat = chapter::with('truyen')->orderBy('id', 'DESC')->where('truyen_id', $truyen->id)->first();
+        // 
         $slide_truyen = Truyen::orderBy('id', 'DESC')->where('kichhoat', 1)->take(8)->get();
-
+        // 
+        $truyennoibat = Truyen::Where('truyennoibat',1)->where('kichhoat', 1)->take(20)->get();
+        // 
+        $truyenxemnhieu = Truyen::Where('truyennoibat',2)->where('kichhoat', 1)->take(20)->get();
         // lấy truyện có cùng danh mục id danh mục = truyện => danhmuctruyen=> id wherenotin loại bỏ truyện có id trùng
         $cungdanhmuc = Truyen::with('danhmuctruyen', 'theloai')->where('danhmuc_id', $truyen->danhmuctruyen->id)->whereNotIn('id', [$truyen->id])->get();
-        return view('pages.truyen')->with(compact('danhmuc', 'slide_truyen', 'truyen', 'chapter', 'cungdanhmuc', 'chapter_dau', 'theloai'));
+        return view('pages.truyen')->with(compact('truyennoibat','truyenxemnhieu','danhmuc', 'slide_truyen', 'truyen', 'chapter', 'cungdanhmuc', 'chapter_moinhat','chapter_dau', 'theloai'));
     }
     public function xemchapter($slug)
     {

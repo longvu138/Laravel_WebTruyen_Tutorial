@@ -14,45 +14,53 @@
     <!-- Font Awasome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
+<style>
+    body {
+        font-family: sans-serif;
+    }
+</style>
 
 <body>
     <div class="container">
         <!-- Menu -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
-            <a class="navbar-brand" href="{{url('/')}}">Sách Truyện </a>
+            <a class="navbar-brand m-0 p-0" href="{{url('/')}}"> <img style="margin: 0 30px 0 0"
+                    src=" {{ asset('public/images/logo.png') }}" width="200px" height="100px" alt=""> </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{url('/')}}">Trang Chủ
-                            <span class="sr-only">(current)</span></a>
+                        <a style="font-size: 18px;" class="nav-link font-weight-bold" href="{{url('/')}}">Trang Chủ
+                        </a>
                     </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <li class="nav-item active dropdown">
+                        <a style="font-size: 18px;" class="nav-link dropdown-toggle font-weight-bold" href="#"
+                            id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
                             Danh mục truyện
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @foreach($danhmuc as $key => $dm)
-                            <a class="dropdown-item"
+                            <a style="font-size: 15px;" class="dropdown-item"
                                 href="{{url('danh-muc/'.$dm->slug_danhmuc)}}">{{$dm->tendanhmuc}}</a>
                             @endforeach
                         </div>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <li class="nav-item active dropdown">
+                        <a style="font-size: 18px;" class="nav-link dropdown-toggle font-weight-bold " href="#"
+                            id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
                             Thể Loại truyện
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @foreach($theloai as $key => $the)
-                            <a class="dropdown-item"
+                            <a style="font-size: 15px;" class="dropdown-item"
                                 href="{{url('the-loai/'.$the->slug_theloai)}}">{{$the->tentheloai}}</a>
                             @endforeach
                         </div>
@@ -70,6 +78,8 @@
                 </form>
             </div>
         </nav>
+    </div>
+    <div class="container">
         <!-- slide -->
         @yield('slide')
         <!-- content -->
@@ -104,6 +114,9 @@
     $(".owl-carousel").owlCarousel({
         loop: true,
         margin: 10,
+        autoplay: true,
+        autoplayTimeout: 2000,
+        autoplayHoverPause: true,
         responsive: {
             0: {
                 items: 1,
@@ -170,6 +183,8 @@
 
 </script>
 <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0&appId=360498685238202&autoLogAppEvents=1" nonce="Lr2TXpnB"></script>
+<script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0&appId=360498685238202&autoLogAppEvents=1"
+    nonce="Lr2TXpnB"></script>
 
 </html>

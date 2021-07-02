@@ -77,6 +77,17 @@
                         </div>
                         
                         <div class="form-group">
+
+                            <label for="exampleInputEmail1">Truyện Hot</label>
+                            <select class="custom-select" name="truyennoibat" id="">
+                                <option value="0">Truyện mới</option>
+                                <option value="1">Truyện nổi bật</option>
+                                <option value="2">Truyện Xem Nhiều</option>
+
+                            </select>
+                        </div> 
+
+                        <div class="form-group">
                             <label for="exampleInputEmail1">Hình Ảnh truyện</label>
                             <input type="file" class="form-control-file" name="hinhanh" 
                              id="convert_slug" placeholder="thêm truyện">

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\DanhMucTruyen;
 use App\Models\Truyen;
@@ -19,7 +19,7 @@ class TruyenController extends Controller
     {
         //
         $truyen = Truyen::with('danhmuctruyen','theloai')->orderBy('id', 'DESC')->get();
-      
+        // dd($truyen);
         return view('admin.truyen.index')->with(compact('truyen'));
     }
 
@@ -43,7 +43,7 @@ class TruyenController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    { 
         //
         $data = $request->validate(
             [
@@ -57,7 +57,8 @@ class TruyenController extends Controller
                 'danhmuc_id' => 'required',
                 'theloai' => 'required',
                 'tukhoa' => 'required',
-                'luotxem' => 'required'
+                'luotxem' => 'required',
+                'truyennoibat'=>'required'
             ],
             [
                 'tentruyen.required' => 'Tên truyen phải có',
@@ -79,7 +80,10 @@ class TruyenController extends Controller
         $truyen->luotxem = $data['luotxem'];
         $truyen->tomtat = $data['tomtat'];
         $truyen->kichhoat = $data['kichhoat'];
+        $truyen->truyennoibat = $data['truyennoibat'];
         $truyen->danhmuc_id = $data['danhmuc_id'];
+        $truyen->created_at =Carbon::now('Asia/Ho_Chi_Minh');
+      
         //  thheem ảnh vào folder
         $get_image = $request->hinhanh;
         $path = 'public/uploads/truyen/';
@@ -141,7 +145,8 @@ class TruyenController extends Controller
                 'danhmuc_id' => 'required',
                 'theloai' => 'required',
                 'tukhoa' => 'required',
-                'luotxem' => 'required'
+                'luotxem' => 'required',
+                'truyennoibat' => 'required'
             ],
             [
                 'tentruyen.required' => 'Tên truyen phải có',
@@ -163,7 +168,9 @@ class TruyenController extends Controller
             $truyen->tacgia = $data['tacgia'];
             $truyen->tomtat = $data['tomtat'];
             $truyen->kichhoat = $data['kichhoat'];
+            $truyen->truyennoibat = $data['truyennoibat'];
             $truyen->danhmuc_id = $data['danhmuc_id'];
+              $truyen->updated_at =Carbon::now('Asia/Ho_Chi_Minh');
             //  thheem ảnh vào folder
             $get_image = $request->hinhanh;
             if($get_image){
@@ -209,5 +216,13 @@ class TruyenController extends Controller
         }
         Truyen::find($id)->delete();
         return redirect()->back()->with('status', 'xoá thành cong');
+    }
+
+    public function truyennoibatajax(Request $request)
+    {
+        $data= $request->all();
+        $truyen = Truyen::find($data['truyen_id']);
+        $truyen->truyennoibat = $data['truyennoibat'];
+        $truyen ->save();
     }
 }

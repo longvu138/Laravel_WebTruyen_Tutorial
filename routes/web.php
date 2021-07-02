@@ -30,6 +30,8 @@ Route::get('/tag/{tag}',[IndexController::class,'tag']);
 
 Route::post('/tim-kiem',[IndexController::class,'timkiem']); 
 Route::post('/timkiem-ajax',[IndexController::class,'timkiemajax']); 
+Route::post('/truyen-noi-bat',[TruyenController::class,'truyennoibatajax']); 
+
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

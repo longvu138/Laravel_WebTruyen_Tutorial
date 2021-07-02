@@ -7,8 +7,13 @@
         <li class="breadcrumb-item active" aria-current="page">Tìm Kiếm</li>
     </ol>
 </nav>
+@if($tukhoa == '')
+<h1 style="margin-top: 50px;">Vui lòng nhập từ khoá tìm kiếm</h1>
 
+@else
 <h1 style="margin-top: 50px;">Tìm Kiếm với từ khoá là : {{$tukhoa}}</h1>
+
+
 <hr>
 <div class="album py-5 bg-light">
 
@@ -48,10 +53,7 @@
                 </div>
             </div>
             @endforeach
-
-            <div class="container text-right">
-                <a href="" class="btn btn-success">Xem tất cả</a>
-            </div>
         </div>
+        @endif
         @endif
         @endsection
