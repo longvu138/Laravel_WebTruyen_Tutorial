@@ -8,6 +8,8 @@ use App\Http\Controllers\TruyenController;
 use App\Http\Controllers\chapterController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\theloaiController;
+use App\Http\Controllers\SachController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,13 +33,14 @@ Route::get('/tag/{tag}',[IndexController::class,'tag']);
 Route::post('/tim-kiem',[IndexController::class,'timkiem']); 
 Route::post('/timkiem-ajax',[IndexController::class,'timkiemajax']); 
 Route::post('/truyen-noi-bat',[TruyenController::class,'truyennoibatajax']); 
-
+Route::post('/tab-danh-muc',[IndexController::class,'tabsdanhmuc']); 
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::resource('/danhmuc', DanhMucTruyenController::class);
 Route::resource('/truyen', TruyenController::class);
+Route::resource('/sach', SachController::class);
 Route::resource('/chapter', chapterController::class);
 Route::resource('/theloai', theloaiController::class);
 

@@ -128,6 +128,7 @@
     <script src="//cdn.ckeditor.com/4.16.1/full/ckeditor.js"></script>
     <script>
         CKEDITOR.replace('noidungchapter');
+        CKEDITOR.replace('ckeditor_sach');
     </script>
     <script>
         $('.truyennoibat').change(function () {

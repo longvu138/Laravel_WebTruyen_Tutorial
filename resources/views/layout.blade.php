@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Sách Truyện</title>
+    <title>Truyện Online</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
     <!-- Styles từ file Public -->
@@ -125,7 +125,7 @@
                 items: 3,
             },
             1000: {
-                items: 5,
+                items: 4,
             },
         },
     });
@@ -180,8 +180,25 @@
 
         });
     });
-
 </script>
+
+
+<!-- <script>
+    $('.tabs_danhmuc').click(function () {
+        const danhmuc_id = $(this).data('danhmuc_id');
+        var _token = $('input[name="_token"]').val();
+        $.ajax({
+            url: "{{url('/tab-danh-muc')}}",
+            method: "POST",
+            data: { danhmuc_id: danhmuc_id, _token: _token },
+            success: function (data) {
+                $('#tabdanhmuctruyen_'+danhmuc_id).html(data);
+                // alert('#tabdanhmuctruyen_'+danhmuc_id)
+            }
+        });
+    })
+</script> -->
+
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous"
     src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0&appId=360498685238202&autoLogAppEvents=1"

@@ -100,7 +100,7 @@
                                 <option value="0">Không kích hoạt</option>
                             </select>
                         </div>
-                        <button type="submit" name="themdanhmuc" class="btn btn-primary">Thêm truyện</button>
+                        <button type="submit" name="themtruyen" class="btn btn-primary">Thêm truyện</button>
                     </form>
                 </div>
             </div>

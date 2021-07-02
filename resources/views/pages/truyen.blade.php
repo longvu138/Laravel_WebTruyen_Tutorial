@@ -15,7 +15,8 @@
     <div class="col-md-9">
         <div class="row">
             <div class="col-md-3">
-                <img class="card-img-top img-responsive" src=" {{ asset('public/uploads/truyen/'.$truyen->hinhanh) }}" />
+                <img class="card-img-top img-responsive"
+                    src=" {{ asset('public/uploads/truyen/'.$truyen->hinhanh) }}" />
             </div>
             <div class="col-md-9">
                 <ul class="infotruyen" style="list-style: none">
@@ -34,13 +35,13 @@
                     <li>Thể Loại: <a
                             href="{{url('the-loai/'.$truyen->theloai->slug_theloai)}}">{{$truyen->theloai->tentheloai}}</a>
                     </li>
-                    <li>số chapter:2000</li>
-                    <li>Lượt xem:200</li>
-                    <li><a href="">Xem mục lục</a></li>
+                    <li>Lượt xem: {{$truyen->luotxem}}</li>
 
                     @if($chapter_dau)
-                    <li style="margin-bottom: 15px;" ><a     href="{{url('xem-chapter/'.$chapter_moinhat->slug_chapter)}}">Đọc Chương mới nhất</a></li>
-                    <li><a  href="{{url('xem-chapter/'.$chapter_dau->slug_chapter)}}" class="btn btn-primary">Đọc online</a></li>
+                    <li style="margin-bottom: 15px;"><a
+                            href="{{url('xem-chapter/'.$chapter_moinhat->slug_chapter)}}">Đọc Chương mới nhất</a></li>
+                    <li><a href="{{url('xem-chapter/'.$chapter_dau->slug_chapter)}}" class="btn btn-primary">Đọc
+                            online</a></li>
 
 
                     @else
@@ -186,40 +187,46 @@
 
     <div class="col-md-3">
         <h3 class="card-header" style="background-color:#ffdada !important;">Truyện Nổi Bật</h3>
-        @foreach($truyennoibat   as $key => $trnoibat)
+        @foreach($truyennoibat as $key => $trnoibat)
         <div class="row mt-2">
+
             <div class="col-md-6">
-                <img src="{{ asset('public/uploads/truyen/'.$trnoibat->hinhanh) }}" alt="" class="card-img-top img-responsive">
+                <img src="{{ asset('public/uploads/truyen/'.$trnoibat->hinhanh) }}" alt=""
+                    class="card-img-top img-responsive">
             </div>
             <div class="col-md-6 sidebar">
+                <a href="{{url('xem-truyen/'.$trnoibat->slug_truyen)}}">
                 <p class="mt-2">
                     {{$trnoibat->tentruyen}}
                 </p>
+                </a>
                 <p class="">
-                   <i class="fas fa-eye"> {{$trnoibat->luotxem}}</i>
+                    <i class="fas fa-eye"> {{$trnoibat->luotxem}}</i>
                 </p>
             </div>
+
         </div>
         @endforeach
         <h3 class="card-header mt-2" style="background-color:#ffdada !important;">Truyện Xem Nhiều</h3>
-        @foreach($truyenxemnhieu   as $key => $trxemnhieu)
+        @foreach($truyenxemnhieu as $key => $trxemnhieu)
         <div class="row mt-2">
             <div class="col-md-6">
-                <img src="{{ asset('public/uploads/truyen/'.$trxemnhieu->hinhanh) }}" alt="" class="card-img-top img-responsive">
+                <img src="{{ asset('public/uploads/truyen/'.$trxemnhieu->hinhanh) }}" alt=""
+                    class="card-img-top img-responsive">
             </div>
             <div class="col-md-6 sidebar">
                 <p class="mt-2">
                     {{$trxemnhieu->tentruyen}}
                 </p>
                 <p class="">
-                   <i class="fas fa-eye"> {{$trxemnhieu->luotxem}}</i>
+                    <i class="fas fa-eye"> {{$trxemnhieu->luotxem}}</i>
                 </p>
             </div>
         </div>
         @endforeach
     </div>
 
-    
+
 </div>
 
 @endsection

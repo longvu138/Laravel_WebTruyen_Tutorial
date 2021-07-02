@@ -185,4 +185,38 @@ class IndexController extends Controller
         )->get();
         return view('pages.tag')->with(compact('truyen','tag','danhmuc','theloai'));
     }
+
+    // public function tabsdanhmuc(Request $request )
+    // {
+    //     $data = $request->all();
+    //     $output="";
+    //     $truyen = Truyen::with('danhmuctruyen','theloai')->where('danhmuc_id',$data['danhmuc_id'])->get();
+    //     // dd($truyen);
+    //     foreach($truyen as $key => $value)
+    //     {
+    //         $output.='<div class="col-md-3">
+    //                 <div class="card mb-3 box-shadow">
+    //                     <img  class="card-img-top img-responsive"
+    //                         src="'. url('public/uploads/truyen/'.$value->hinhanh).'">
+    //                     <hr>
+    //                     <div class="card-body p-3 ">
+    //                         <h5 style="height: 40px;">'. $value->tentruyen.'</h5>
+                           
+    //                         <p style="height: 40px;" class="card-text"> $tomtat </p>
+    //                         <div class="d-flex justify-content-between align-items-center">
+    //                             <div class="btn-group">
+    //                                 <a href="{{url("xem-truyen/".$value->slug_truyen)}}"
+    //                                     class="btn btn-sm btn-outline-secondary">Đọc Ngay</a>
+    //                                 <a class="btn btn-sm btn-outline-secondary"> <i class="fas fa-eye"></i> 50</a>
+    //                             </div>
+    //                             <small class="text-muted"> {{$value->created_at->diffForHumans() }}</small>
+    //                         </div>
+    //                     </div>
+    //                     </a>
+    //                 </div>
+    //             </div>';
+    //     }
+    //     echo $output;
+      
+    // }
 }
