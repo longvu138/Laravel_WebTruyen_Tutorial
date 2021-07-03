@@ -30,10 +30,14 @@ Route::get('/the-loai/{slug}',[IndexController::class,'theloai']);
 
 Route::get('/tag/{tag}',[IndexController::class,'tag']); 
 
+Route::get('/doc-sach',[IndexController::class,'docsach']); 
+Route::post('/xem-sach-nhanh',[IndexController::class,'xemsachnhanh']); 
+ 
 Route::post('/tim-kiem',[IndexController::class,'timkiem']); 
 Route::post('/timkiem-ajax',[IndexController::class,'timkiemajax']); 
 Route::post('/truyen-noi-bat',[TruyenController::class,'truyennoibatajax']); 
 Route::post('/tab-danh-muc',[IndexController::class,'tabsdanhmuc']); 
+
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

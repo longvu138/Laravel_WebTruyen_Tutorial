@@ -81,3 +81,9 @@ $truyen = Truyen::with('danhmuctruyen','TheLoai')->where(
 
         ) ->toSql();
         dd($truyen);
+
+9. end 
+appdebug=true;  cho biết lỗi khi dev
+false khi up lên host.
+chạy code để ẩn error laravel
+$php artisan vendor:publish --tag=laravel-errors

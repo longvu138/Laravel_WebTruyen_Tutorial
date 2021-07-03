@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\chapter;
 use Illuminate\Http\Request;
 use App\Models\DanhMucTruyen;
+use App\Models\Sach;
 use App\Models\Truyen;
 use App\Models\TheLoai;
 use Illuminate\Validation\Rules\Exists;
@@ -184,6 +185,32 @@ class IndexController extends Controller
 
         )->get();
         return view('pages.tag')->with(compact('truyen','tag','danhmuc','theloai'));
+    }
+
+    public function docsach()
+    {
+        $theloai = TheLoai::orderBy('id', 'DESC')->get();
+        //  lấy tất cả các danh mục truyện sắp xếp theo id từ DESC là gì đéo nhớ
+        $danhmuc = DanhMucTruyen::orderBy('id', 'DESC')->get();
+        // 
+        $slide_truyen = Truyen::orderBy('id', 'DESC')->where('kichhoat', 1)->take(8)->get();
+
+        // Lấy tất cả các truyện theo id sắp xếp theo DESC điều kiện có kích hoạt là 1 
+        $truyen = Truyen::orderBy('id', 'DESC')->where('kichhoat', 1)->get();
+        // 
+        $sach = Sach::orderBy('id','DESC')->where('kichhoat',1)->paginate(12);
+        return view('pages.sach')->with(compact('sach','theloai','danhmuc','truyen'));
+    }
+
+
+    public function xemsachnhanh(Request $request)
+    {
+        $sachid = $request->sach_id;
+        $sach = Sach::find($sachid);
+        $output['tieudesach'] = $sach -> tensach;
+        $output['noidungsach'] = $sach -> noidung;
+
+        echo json_encode($output);
     }
 
     // public function tabsdanhmuc(Request $request )
