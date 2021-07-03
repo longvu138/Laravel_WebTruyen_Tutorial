@@ -39,10 +39,6 @@
                         </a>
                     </li>
 
-                    <li class="nav-item active">
-                        <a style="font-size: 18px;" class="nav-link font-weight-bold" href="{{url('/doc-sach')}}">Sách
-                        </a>
-                    </li>
                     <li class="nav-item active dropdown">
                         <a style="font-size: 18px;" class="nav-link dropdown-toggle font-weight-bold" href="#"
                             id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -70,6 +66,12 @@
                             @endforeach
                         </div>
                     </li>
+
+                    <li class="nav-item active">
+                        <a style="font-size: 18px;" class="nav-link font-weight-bold" href="{{url('/doc-sach')}}">Sách
+                        </a>
+                    </li>
+
                 </ul>
                 <form autocomplete="off" class="form-inline my-2 my-lg-0" method="POST" action="{{url('tim-kiem')}}">
                     @csrf
@@ -187,24 +189,26 @@
     });
 </script>
 
-
+<!-- ajax xem sách nhanh -->
 <script>
-    $(document).on('click','.xemsachnhanh',function(){
+    $(document).on('click', '.xemsachnhanh', function () {
         var sach_id = $(this).attr('id');
         var _token = $('input[name="_token"]').val();
         $.ajax({
             url: "{{url('/xem-sach-nhanh')}}",
             method: "POST",
-            dataType:"JSON",
+            dataType: "JSON",
             data: { sach_id: sach_id, _token: _token },
             success: function (data) {
                 $('#tieudesach').html(data.tieudesach);
                 $('#noidungsach').html(data.noidungsach);
-              
+
             }
         });
     })
 </script>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60e035fd57d5ec97"></script>
 
 <!-- <script>
     $('.tabs_danhmuc').click(function () {

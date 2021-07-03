@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\DanhMucTruyen;
 use App\Models\Truyen;
 use App\Models\TheLoai;
-
+use Image;
 
 class TruyenController extends Controller
 {
@@ -18,7 +19,7 @@ class TruyenController extends Controller
     public function index()
     {
         //
-        $truyen = Truyen::with('danhmuctruyen','theloai')->orderBy('id', 'DESC')->get();
+        $truyen = Truyen::with('danhmuctruyen', 'theloai')->orderBy('id', 'DESC')->get();
         // dd($truyen);
         return view('admin.truyen.index')->with(compact('truyen'));
     }
@@ -31,9 +32,9 @@ class TruyenController extends Controller
     public function create()
     {
         //
-        $theloai = TheLoai::orderBy('id','DESC')->get();
+        $theloai = TheLoai::orderBy('id', 'DESC')->get();
         $danhmuc = DanhMucTruyen::orderBy('id', 'DESC')->get();
-        return view('admin.truyen.create')->with(compact('danhmuc','theloai'));
+        return view('admin.truyen.create')->with(compact('danhmuc', 'theloai'));
     }
 
     /**
@@ -43,7 +44,7 @@ class TruyenController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
+    {
         //
         $data = $request->validate(
             [
@@ -58,7 +59,7 @@ class TruyenController extends Controller
                 'theloai' => 'required',
                 'tukhoa' => 'required',
                 'luotxem' => 'required',
-                'truyennoibat'=>'required'
+                'truyennoibat' => 'required'
             ],
             [
                 'tentruyen.required' => 'Tên truyen phải có',
@@ -82,8 +83,8 @@ class TruyenController extends Controller
         $truyen->kichhoat = $data['kichhoat'];
         $truyen->truyennoibat = $data['truyennoibat'];
         $truyen->danhmuc_id = $data['danhmuc_id'];
-        $truyen->created_at =Carbon::now('Asia/Ho_Chi_Minh');
-      
+        $truyen->created_at = Carbon::now('Asia/Ho_Chi_Minh');
+
         //  thheem ảnh vào folder
         $get_image = $request->hinhanh;
         $path = 'public/uploads/truyen/';
@@ -91,9 +92,13 @@ class TruyenController extends Controller
         $get_name_image = $get_image->getClientOriginalName();
         //  tách tên và đuôi bởi dấu chấm
         $name_image = current(explode('.', $get_name_image));
-        // tạo tên mới nối với random 0-99
+        // tạo tên mới nối với random 0-99 ->  hình1.jpg -> hình1(0->99).jpg
         $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
-        $get_image->move($path, $new_image);
+        // resize image
+        $image_resize = Image::make($get_image->getRealPath());
+        $image_resize->resize(250, 300);
+        // lưu image đã resize vào path
+        $image_resize->save($path . $new_image);
         $truyen->hinhanh = $new_image;
         $truyen->save();
         return redirect()->back()->with('status', 'thêm truyện thành cong');
@@ -119,10 +124,10 @@ class TruyenController extends Controller
     public function edit($id)
     {
         //
-        $theloai = TheLoai::orderBy('id','DESC')->get();
+        $theloai = TheLoai::orderBy('id', 'DESC')->get();
         $danhmuc = DanhMucTruyen::orderBy('id', 'DESC')->get();
         $truyen = Truyen::find($id);
-        return view('admin.truyen.edit')->with(compact('truyen', 'danhmuc','theloai'));
+        return view('admin.truyen.edit')->with(compact('truyen', 'danhmuc', 'theloai'));
     }
 
     /**
@@ -155,47 +160,54 @@ class TruyenController extends Controller
                 'tacgia.required' => 'phải có tác giả truyện',
                 'tentruyen.unique' => 'Tên truyen đã có',
                 'tomtat.required' => 'chưa có tóm tắt phải có',
-                
+
             ]
         );
         // tao đối tượng danh muc truyện từ model danhmuctruyen
-            $truyen = Truyen::find($id);
-            $truyen->slug_truyen = $data['slug_truyen'];
-            $truyen->tentruyen = $data['tentruyen'];
-            $truyen->theloai_id = $data['theloai'];
-            $truyen->tukhoa = $data['tukhoa'];
-            $truyen->luotxem = $data['luotxem'];
-            $truyen->tacgia = $data['tacgia'];
-            $truyen->tomtat = $data['tomtat'];
-            $truyen->kichhoat = $data['kichhoat'];
-            $truyen->truyennoibat = $data['truyennoibat'];
-            $truyen->danhmuc_id = $data['danhmuc_id'];
-              $truyen->updated_at =Carbon::now('Asia/Ho_Chi_Minh');
-            //  thheem ảnh vào folder
-            $get_image = $request->hinhanh;
-            if($get_image){
-                $path = 'public/uploads/truyen/' . $truyen->hinhanh;
-                // nếu tồn tại ảnh trong đường dẫn thì unlink
-                if (file_exists($path)) {
-                    unlink($path);
-                }
-                $path = 'public/uploads/truyen/';
-                // getClientOriginalName() lấy tên ảnh và  đuôi mở rộng
-                $get_name_image = $get_image->getClientOriginalName();
-                //  tách tên và đuôi bởi dấu chấm
-                $name_image = current(explode('.', $get_name_image));
-                // tạo tên mới nối với random 0-99
-                $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
-                $get_image->move($path, $new_image);
-                $truyen->hinhanh = $new_image;
+        $truyen = Truyen::find($id);
+        $truyen->slug_truyen = $data['slug_truyen'];
+        $truyen->tentruyen = $data['tentruyen'];
+        $truyen->theloai_id = $data['theloai'];
+        $truyen->tukhoa = $data['tukhoa'];
+        $truyen->luotxem = $data['luotxem'];
+        $truyen->tacgia = $data['tacgia'];
+        $truyen->tomtat = $data['tomtat'];
+        $truyen->kichhoat = $data['kichhoat'];
+        $truyen->truyennoibat = $data['truyennoibat'];
+        $truyen->danhmuc_id = $data['danhmuc_id'];
+        $truyen->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
+        //  thheem ảnh vào folder
+        $get_image = $request->hinhanh;
+        if ($get_image) {
+            $path = 'public/uploads/truyen/' . $truyen->hinhanh;
+            // nếu tồn tại ảnh trong đường dẫn thì unlink
+            if (file_exists($path)) {
+                unlink($path);
             }
-           
-            $truyen->save();
-            // trả về trang trước
-            // return redirect()->back()->with('status', 'cập nhật truyện thành cong');
-            // trả về route truyện
-            return redirect('/truyen')->with('status', 'cập nhật truyện thành cong');
 
+            $path = 'public/uploads/truyen/';
+            $get_name_image = $get_image->getClientOriginalName();
+
+            $name_image = current(explode('.', $get_name_image));
+            // tạo tên mới nối với random 0-99 ->  hình1.jpg -> hình1(0->99).jpg
+            $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
+            // resize image
+            $image_resize = Image::make($get_image->getRealPath());
+            $image_resize->resize(250, 350);
+            // dd($image_resize);
+            // lưu image đã resize vào path
+            $image_resize->save($path.$new_image);
+            // dd($path.$new_image);
+            $truyen->hinhanh = $new_image;
+            $truyen ->save();
+        }
+
+
+        $truyen->save();
+        // trả về trang trước
+        // return redirect()->back()->with('status', 'cập nhật truyện thành cong');
+        // trả về route truyện
+        return redirect('/truyen')->with('status', 'cập nhật truyện thành cong');
     }
 
     /**
@@ -220,9 +232,9 @@ class TruyenController extends Controller
 
     public function truyennoibatajax(Request $request)
     {
-        $data= $request->all();
+        $data = $request->all();
         $truyen = Truyen::find($data['truyen_id']);
         $truyen->truyennoibat = $data['truyennoibat'];
-        $truyen ->save();
+        $truyen->save();
     }
 }

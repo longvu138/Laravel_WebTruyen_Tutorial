@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Sach;
 use Carbon\Carbon;
+use Image;
+
 class SachController extends Controller
 {
     /**
@@ -14,9 +16,9 @@ class SachController extends Controller
      */
     public function index()
     {
-        $sach = Sach::orderBy('id', 'DESC')->get();   
-        return view('admin.sach.index')->with(compact('sach')); 
-    }     
+        $sach = Sach::orderBy('id', 'DESC')->get();
+        return view('admin.sach.index')->with(compact('sach'));
+    }
 
 
     /**
@@ -47,11 +49,11 @@ class SachController extends Controller
                 'kichhoat' => 'required',
                 'hinhanh' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048
                 |dimensions:min_width:100,min_height:100,max_height:1000,max_width:1000',
-                'slug_sach' => 'required|max:255|unique:sach',               
+                'slug_sach' => 'required|max:255|unique:sach',
                 'tukhoa' => 'required',
                 'luotxem' => 'required',
                 'noidung' => 'required',
-                
+
             ],
             [
                 'tensach.required' => 'Tên sach phải có',
@@ -67,24 +69,28 @@ class SachController extends Controller
         // tao đối tượng danh muc truyện từ model danhmucsach
         $sach = new sach();
         $sach->slug_sach = $data['slug_sach'];
-        $sach->tensach = $data['tensach']; 
+        $sach->tensach = $data['tensach'];
         $sach->tukhoa = $data['tukhoa'];
         $sach->luotxem = $data['luotxem'];
         $sach->tomtat = $data['tomtat'];
         $sach->noidung = $data['noidung'];
         $sach->kichhoat = $data['kichhoat'];
-        $sach->created_at =Carbon::now('Asia/Ho_Chi_Minh');
-      
+        $sach->created_at = Carbon::now('Asia/Ho_Chi_Minh');
+
         //  thheem ảnh vào folder
+        // lấy hình ảnh từ request
         $get_image = $request->hinhanh;
+        // file đường dẫn ảnh
         $path = 'public/uploads/sach/';
-        // getClientOriginalName() lấy tên ảnh và  đuôi mở rộng
-        $get_name_image = $get_image->getClientOriginalName();
-        //  tách tên và đuôi bởi dấu chấm
+        // getClientOriginalName() lấy tên ảnh  ví dụ hình . jpg
+        $get_name_image = $get_image->getClientOriginalName();       
+        //  tách tên và đuôi bởi dấu chấm 
         $name_image = current(explode('.', $get_name_image));
-        // tạo tên mới nối với random 0-99
+        // tạo tên mới nối với random 0-99 ->  hình1.jpg -> hình1(0->99).jpg
         $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
-        $get_image->move($path, $new_image);
+        $image_resize = Image::make($get_image->getRealPath());
+        $image_resize->resize(250, 300);
+        $image_resize->save($path.$new_image);
         $sach->hinhanh = $new_image;
         $sach->save();
         return redirect()->back()->with('status', 'thêm sách thành cong');
@@ -129,37 +135,37 @@ class SachController extends Controller
                 'tensach' => 'required|max:255',
                 'tomtat' => 'required|max:255',
                 'kichhoat' => 'required',
-                'slug_sach' => 'required|max:255',               
+                'slug_sach' => 'required|max:255',
                 'tukhoa' => 'required',
                 'luotxem' => 'required',
                 'noidung' => 'required',
-                
+
             ],
             [
                 'tensach.required' => 'Tên sach phải có',
                 'slug_sach.required' => 'slug sach phải có',
                 'slug_sach.unique' => 'slug đã có',
-               
+
                 'tensach.unique' => 'Tên sach đã có',
                 'tomtat.required' => 'chưa có tóm tắt phải có',
-        
+
                 'noidung.required' => 'nội dung phải có',
             ]
         );
         // tao đối tượng danh muc truyện từ model danhmucsach
         $sach = Sach::find($id);
         $sach->slug_sach = $data['slug_sach'];
-        $sach->tensach = $data['tensach']; 
+        $sach->tensach = $data['tensach'];
         $sach->tukhoa = $data['tukhoa'];
         $sach->luotxem = $data['luotxem'];
         $sach->tomtat = $data['tomtat'];
         $sach->noidung = $data['noidung'];
         $sach->kichhoat = $data['kichhoat'];
-        $sach->updated_at =Carbon::now('Asia/Ho_Chi_Minh');
-      
+        $sach->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
+
         //  thheem ảnh vào folder
         $get_image = $request->hinhanh;
-        if($get_image){
+        if ($get_image) {
             $path = 'public/uploads/sach/' . $sach->hinhanh;
             // nếu tồn tại ảnh trong đường dẫn thì unlink
             if (file_exists($path)) {
@@ -168,14 +174,20 @@ class SachController extends Controller
             $path = 'public/uploads/sach/';
             // getClientOriginalName() lấy tên ảnh và  đuôi mở rộng
             $get_name_image = $get_image->getClientOriginalName();
-            //  tách tên và đuôi bởi dấu chấm
+            //  tách tên và đuôi bởi dấu chấm 
             $name_image = current(explode('.', $get_name_image));
-            // tạo tên mới nối với random 0-99
+            // tạo tên mới nối với random 0-99 ->  hình1.jpg -> hình1(0->99).jpg
             $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
-            $get_image->move($path, $new_image);
+            // resize image
+            $image_resize = Image::make($get_image->getRealPath());
+            $image_resize->resize(250, 300);
+            // lưu image đã resize vào path
+            $image_resize->save($path.$new_image);
+            // gán trường hình ảnh trong db bằng trên iamge mới và save
             $sach->hinhanh = $new_image;
+            $sach->save();
         }
-       
+
         $sach->save();
         return redirect('/sach')->with('status', 'cập nhật sách thành công');
     }
@@ -189,15 +201,15 @@ class SachController extends Controller
     public function destroy($id)
     {
         //
-         // tìm id
-         $sach =  Sach::find($id);
-         // đường dẫn
-         $path = 'public/uploads/sach/' . $sach->hinhanh;
-         // nếu tồn tại ảnh trong đường dẫn thì unlink
-         if (file_exists($path)) {
-             unlink($path);
-         }
-         Sach::find($id)->delete();
-         return redirect()->back()->with('status', 'xoá thành cong');
+        // tìm id
+        $sach =  Sach::find($id);
+        // đường dẫn
+        $path = 'public/uploads/sach/' . $sach->hinhanh;
+        // nếu tồn tại ảnh trong đường dẫn thì unlink
+        if (file_exists($path)) {
+            unlink($path);
+        }
+        Sach::find($id)->delete();
+        return redirect()->back()->with('status', 'xoá thành cong');
     }
 }
