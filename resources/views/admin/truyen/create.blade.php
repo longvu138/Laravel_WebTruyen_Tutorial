@@ -30,6 +30,7 @@
                             <input type="text" value="{{old('tentruyen')}}" name="tentruyen" 
                             
                             class="form-control" id="slug" onkeyup="ChangeToSlug()" placeholder="tên truyện">
+ 
                         </div>
 
                         <div class="form-group">
@@ -40,6 +41,10 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Từ Khoá</label>
                             <input type="text" value="{{old('tukhoa')}}" name="tukhoa"  class="form-control" placeholder="tác giả">
+                           //lỗi hiển thị sau input
+                           // @error ('tukhoa')
+                            // <p class="text-danger"> {{$message}} </p>
+                            //@enderror
                         </div>
                         
                         <div class="form-group">
