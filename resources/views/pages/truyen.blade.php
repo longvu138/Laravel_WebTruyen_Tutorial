@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-3">
                 <img class="card-img-top img-responsive"
-                    src=" {{ asset('public/uploads/truyen/'.$truyen->hinhanh) }}" />
+                    src=" {{ asset('uploads/truyen/'.$truyen->hinhanh) }}" />
             </div>
             <div class="col-md-9">
                 <ul class="infotruyen" style="list-style: none">
@@ -143,7 +143,6 @@
         </div>
         </p>
         <hr />
-
         <h4>Danh sách chương</h4>
         <ul class="mucluctruyen">
             @php
@@ -157,6 +156,7 @@
             <li> mục lục đang cập nhật ...</li>
             @endif
         </ul>
+        
 
         <div class="fb-comments" data-href="  {{\URL::current()}}" data-width="100%" data-numposts="5"></div>
         <h4>Sách cùng danh mục</h4>
@@ -165,7 +165,7 @@
             <div class="col-md-3">
                 <div class="card mb-3 box-shadow">
                     <img class="card-img-top img-responsive"
-                        src=" {{ asset('public/uploads/truyen/'.$value->hinhanh) }}">
+                        src=" {{ asset('uploads/truyen/'.$value->hinhanh) }}">
                     <div class="card-body">
                         <h5>{{$value->tentruyen}}</h5>
                         <p class="card-text">{{$value->tomtat}}</p>
@@ -191,7 +191,7 @@
         <div class="row mt-2">
 
             <div class="col-md-6">
-                <img src="{{ asset('public/uploads/truyen/'.$trnoibat->hinhanh) }}" alt=""
+                <img src="{{ asset('uploads/truyen/'.$trnoibat->hinhanh) }}" alt=""
                     class="card-img-top img-responsive">
             </div>
             <div class="col-md-6 sidebar">
@@ -211,7 +211,7 @@
         @foreach($truyenxemnhieu as $key => $trxemnhieu)
         <div class="row mt-2">
             <div class="col-md-6">
-                <img src="{{ asset('public/uploads/truyen/'.$trxemnhieu->hinhanh) }}" alt=""
+                <img src="{{ asset('uploads/truyen/'.$trxemnhieu->hinhanh) }}" alt=""
                     class="card-img-top img-responsive">
             </div>
             <div class="col-md-6 sidebar">

@@ -14,7 +14,7 @@
             <div class="col-md-3 ">
                 <div class="card mb-3 box-shadow">
                     <img class="card-img-top img-responsive"
-                        src=" {{ asset('public/uploads/truyen/'.$value->hinhanh) }}">
+                        src=" {{ asset('uploads/truyen/'.$value->hinhanh) }}">
 
                     <div class="card-body p-3 ">
                         <h5 style="height: 40px;">{{ $value->tentruyen}}</h5>
@@ -47,7 +47,7 @@
                     <div class="col-md-3">
                         <div class="card mb-3 box-shadow">
                             <img class="card-img-top" width="214px" height="300px"
-                                src=" {{ asset('public/uploads/truyen/4_zing13.jpg') }}">
+                                src=" {{ asset('uploads/truyen/4_zing13.jpg') }}">
                             <div class="card-body">
                                 <h3>Tiêu ĐỀ</h3>
                                 <p class="card-text">This is a wider card with supporting text below as a natural
@@ -67,7 +67,7 @@
                     <div class="col-md-3">
                         <div class="card mb-3 box-shadow">
                             <img class="card-img-top" width="214px" height="300px"
-                                src=" {{ asset('public/uploads/truyen/4_zing13.jpg') }}">
+                                src=" {{ asset('uploads/truyen/4_zing13.jpg') }}">
                             <div class="card-body">
                                 <h3>Tiêu ĐỀ</h3>
                                 <p class="card-text">This is a wider card with supporting text below as a natural
@@ -87,7 +87,7 @@
                     <div class="col-md-3">
                         <div class="card mb-3 box-shadow">
                             <img class="card-img-top" width="214px" height="300px"
-                                src=" {{ asset('public/uploads/truyen/4_zing13.jpg') }}">
+                                src=" {{ asset('uploads/truyen/4_zing13.jpg') }}">
                             <div class="card-body">
                                 <h3>Tiêu ĐỀ</h3>
                                 <p class="card-text">This is a wider card with supporting text below as a natural
@@ -107,7 +107,7 @@
                     <div class="col-md-3">
                         <div class="card mb-3 box-shadow">
                             <img class="card-img-top" width="214px" height="300px"
-                                src=" {{ asset('public/uploads/truyen/4_zing13.jpg') }}">
+                                src=" {{ asset('uploads/truyen/4_zing13.jpg') }}">
                             <div class="card-body">
                                 <h3>Tiêu ĐỀ</h3>
                                 <p class="card-text">This is a wider card with supporting text below as a natural

@@ -11,7 +11,7 @@
             @foreach($sach as $key => $value)
             <div class="col-md-3 ">
                 <div class="card mb-3 box-shadow">
-                    <img class="card-img-top img-responsive" src=" {{ asset('public/uploads/sach/'.$value->hinhanh) }}">
+                    <img class="card-img-top img-responsive" src=" {{ asset('/uploads/sach/'.$value->hinhanh) }}">
 
                     <div class="card-body p-3 ">
                         <h5 style="height: 40px;">{{ $value->tensach}}</h5>

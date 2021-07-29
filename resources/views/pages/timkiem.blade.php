@@ -36,7 +36,7 @@
             <div class="col-md-3">
                 <div class="card mb-3 box-shadow">
                     <img width="250" height="250" class="card-img-top"
-                        src=" {{ asset('public/uploads/truyen/'.$value->hinhanh) }}">
+                        src=" {{ asset('uploads/truyen/'.$value->hinhanh) }}">
                     <div class="card-body">
                         <h5>{{$value->tentruyen}}</h5>
                         <p class="card-text">{{$value->tomtat}}</p>
